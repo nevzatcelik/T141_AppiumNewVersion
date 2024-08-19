@@ -30,10 +30,8 @@ public class Driver {
         if (appiumDriver == null) {
 
             UiAutomator2Options options=new UiAutomator2Options();
-            options.setDeviceName(TELEFONADI)
-                    .setAutomationName(OTOMASYON_ISMI)
-                    .setPlatformVersion(ANDROIDVERSION)
-                    .setPlatformName(PLATFORM);
+            options.setUdid("emulator-5554")
+                    .setApp("C:\\Users\\ahmet\\IdeaProjects\\AppiumNewVersion_T141\\Apps\\Teknosa – Alışveriş, Teknoloji_7.2.6_APKPure.apk");
 
             if (ConfigReader.getProperty("platformName").equals("Android")) {
 
