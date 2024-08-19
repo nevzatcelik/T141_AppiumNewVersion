@@ -4,7 +4,7 @@ Feature:
 
   * Uygulama baslatilir
   * Ilk ekran bolumunden atlaya tiklanir
-  * kategoriler bolumune tiklanir
+  * footer bolumunden "Kategoriler" bolumune tiklanir
   * kategoriler bolumunden telefon bolumune tiklanir
   * telefon sayfasindan cihaz secimi yapilir
   * filtrele bolumune tiklanir
