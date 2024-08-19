@@ -14,10 +14,6 @@ public class Driver {
     private static AndroidDriver appiumDriver;
     private static IOSDriver iosDriver;
 
-    static final String TELEFONADI="Pixel 8 Pro";
-    static final String ANDROIDVERSION="11.0";
-    static final String PLATFORM="Android";
-    static final String OTOMASYON_ISMI="UiAutomator2";
 
     public static AndroidDriver getAndroidDriver()  {
         URL appiumServerURL = null;
@@ -31,7 +27,10 @@ public class Driver {
 
             UiAutomator2Options options=new UiAutomator2Options();
             options.setUdid("emulator-5554")
-                    .setApp("C:\\Users\\ahmet\\IdeaProjects\\AppiumNewVersion_T141\\Apps\\Teknosa – Alışveriş, Teknoloji_7.2.6_APKPure.apk");
+                    .setAppPackage("com.tmob.teknosa")
+                    .setAppActivity("com.tmob.teknosa.MainActivity")
+                    .setNoReset(false);
+
 
             if (ConfigReader.getProperty("platformName").equals("Android")) {
 

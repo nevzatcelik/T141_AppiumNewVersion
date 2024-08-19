@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         // features kisminda birden fazla dosya yolu belirtebiliriz bunu {"content root","2.content root"} eklemesi yapilir
         glue = "stepDefinitions", // features dosyasinda yazilan sozlu metinlerin kod bolumune aktarildigi yer
-        tags = "@ab",
+        tags = "@teknosa",
         // calismasini istedigimiz herhangi bir feature ya da seneryo uzerine koydugumuz tag
         // ile hanginin calisacagina karar veririz bazen 1 den fazla ekleyebiliriz bunu @smoke or @system seklinde yapariz
         dryRun =false
