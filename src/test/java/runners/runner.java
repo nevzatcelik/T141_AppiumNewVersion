@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         tags = "@teknosa",
         // calismasini istedigimiz herhangi bir feature ya da seneryo uzerine koydugumuz tag
         // ile hanginin calisacagina karar veririz bazen 1 den fazla ekleyebiliriz bunu @smoke or @system seklinde yapariz
-        dryRun =false
+        dryRun =true
         /* dry run true ise; features da yazilan seneryolar daki eksik adimlar belirlenmesi icin true da calistirilir
         eksik adimlar olusturuldaktan sonra testin passed olmasi gercek anlamda testimizin passed oldugunu degil
         eksik adim kalmadigini belirtir

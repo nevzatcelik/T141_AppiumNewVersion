@@ -7,13 +7,18 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Date;
 
 import static io.appium.java_client.AppiumBy.androidUIAutomator;
@@ -65,6 +70,31 @@ public class ReusableMethods {
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(wait)))
                 .moveTo(PointOption.point(moveX,moveY))
                 .release().perform();
+    }
+
+    public static void dikeyKaydirma(RemoteWebDriver driver, double baslangicYuzdesi, double bitisYuzdesi, double sabitYuzde, int sure) {
+        // 1. WebDriver'ın pencere boyutunu alır
+        Dimension boyut = driver.manage().window().getSize();
+        // 2. Sabit noktanın x koordinatını hesaplar (pencere genişliğinin belirtilen yüzdesi)
+        int sabitNokta = (int) (boyut.width * sabitYuzde);
+        // 3. Başlangıç noktasının y koordinatını hesaplar (pencere yüksekliğinin başlangıç yüzdesi)
+        int baslangicNoktasi = (int) (boyut.height * baslangicYuzdesi);
+        // 4. Bitiş noktasının y koordinatını hesaplar (pencere yüksekliğinin bitiş yüzdesi)
+        int bitisNoktasi = (int) (boyut.height * bitisYuzdesi);
+        // 5. Yeni bir PointerInput (parmak girişi) oluşturur, türü TOUCH (DOKUNMA) ve adı "finger"
+        PointerInput parmak = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        // 6. Kaydırma işlemi için bir Sequence (dizi) oluşturur, 1 adımlı
+        Sequence kaydirma = new Sequence(parmak, 1)
+                // Başlangıç noktasına parmağı hareket ettirme eylemi ekler
+                .addAction(parmak.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), sabitNokta, baslangicNoktasi))
+                // Parmak basma (dokunma) eylemi ekler
+                .addAction(parmak.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                // Belirtilen süre boyunca parmağı belirtilen bitiş noktasına hareket ettirme eylemi ekler
+                .addAction(parmak.createPointerMove(Duration.ofMillis(sure), PointerInput.Origin.viewport(), sabitNokta, bitisNoktasi))
+                // Parmak kaldırma (dokunmayı sonlandırma) eylemi ekler
+                .addAction(parmak.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        // 7. Oluşturulan kaydırma işlemini WebDriver üzerinde gerçekleştirir
+        driver.perform(Collections.singletonList(kaydirma));
     }
 
     public static void bekle(int saniye){
