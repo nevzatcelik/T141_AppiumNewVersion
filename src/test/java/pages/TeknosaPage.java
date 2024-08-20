@@ -16,4 +16,13 @@ public class TeknosaPage {
 
     @FindBy(xpath = "//*[@text='Filtrele']")
     public WebElement filtereButonu;
+
+    @FindBy(xpath = "//*[@class='android.widget.EditText']")
+    public WebElement markaMetinKutusu;
+
+    @FindBy(xpath = "(//*[@class='android.view.ViewGroup'])[25]")
+    public WebElement filtrelenmisMarkaKutucuk;
+
+    @FindBy(xpath = "//*[@text='Sonuçları Göster']")
+    public WebElement sonculariGoster;
 }

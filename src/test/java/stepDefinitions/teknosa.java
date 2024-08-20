@@ -33,9 +33,11 @@ public class teknosa {
     public void filtrele_bolumune_tiklanir() {
      page.filtereButonu.click();
     }
-    @Given("Marka bolumunden marka secimi yapilir")
-    public void marka_bolumunden_marka_secimi_yapilir() {
-
+    @Given("Marka {string} bolumunden marka secimi yapilir")
+    public void marka_bolumunden_marka_secimi_yapilir(String marka) {
+          page.markaMetinKutusu.sendKeys(marka);
+          page.filtrelenmisMarkaKutucuk.click();
+          page.sonculariGoster.click();
     }
     @Given("siralama yapilirak azalan fiyat secilir")
     public void siralama_yapilirak_azalan_fiyat_secilir() {
