@@ -6,6 +6,8 @@ import pages.TeknosaPage;
 import utils.Driver;
 import utils.ReusableMethods;
 
+import java.io.IOException;
+
 public class teknosa {
    TeknosaPage page=new TeknosaPage();
 
@@ -32,7 +34,8 @@ public class teknosa {
     }
     @Given("filtrele bolumune tiklanir")
     public void filtrele_bolumune_tiklanir() {
-     page.filtereButonu.click();
+         ReusableMethods.bekle(2);
+        page.filtereButonu.click();
     }
     @Given("Marka {string} bolumunden marka secimi yapilir")
     public void marka_bolumunden_marka_secimi_yapilir(String marka) {
@@ -53,9 +56,9 @@ public class teknosa {
     }
     @Given("fiyatlarin azalan duzende oldugu test edilir")
     public void fiyatlarin_azalan_duzende_oldugu_test_edilir() {
-   ReusableMethods.bekle(4);
-    String enPahaliFiyat=page.enPahaliFiyat.getText();
-    enPahaliFiyat=enPahaliFiyat.replaceAll("\\D","");
+     ReusableMethods.bekle(4);
+     String enPahaliFiyat=page.enPahaliFiyat.getText();
+     enPahaliFiyat=enPahaliFiyat.replaceAll("\\D","");
      System.out.println(enPahaliFiyat);
     // ReusableMethods.ekranKaydirmaMethodu(511,2037,750,511,639);
      ReusableMethods.dikeyKaydirma(Driver.getAndroidDriver(),0.80,0.20,0.50,200);
@@ -79,18 +82,22 @@ public class teknosa {
     }
     @Given("urunun sayisi arttirildiginda fiyatinin arttirildigi dogrulanir")
     public void urunun_sayisi_arttirildiginda_fiyatinin_arttirildigi_dogrulanir() {
-       String urununIlkFiyati=page.fiyatText.getText();
-       urununIlkFiyati=urununIlkFiyati.replaceAll("\\D",""); // 4338
-      urununIlkFiyati=urununIlkFiyati.substring(0,urununIlkFiyati.length()-2);
-     System.out.println(urununIlkFiyati);
+       String urununIlkFiyati=page.fiyatText.getText(); // 2.169,00
+       urununIlkFiyati=urununIlkFiyati.replaceAll("\\D",""); // 216900
+       urununIlkFiyati=urununIlkFiyati.substring(0,urununIlkFiyati.length()-2);// 2169
+       System.out.println(urununIlkFiyati);
        page.artiButonu.click();
-       String urununIkinciFiyati=page.fiyatText.getText();
-       urununIkinciFiyati=urununIkinciFiyati.replaceAll("\\D","");
-       urununIkinciFiyati=urununIkinciFiyati.substring(0,urununIkinciFiyati.length()-2);
-     System.out.println(urununIkinciFiyati);
-
-     Assert.assertEquals(Integer.parseInt(urununIlkFiyati)*2,Integer.parseInt(urununIkinciFiyati));
+       ReusableMethods.bekle(2);
+       String urununIkinciFiyati=page.fiyatText.getText(); // 4.338,00 TL
+       urununIkinciFiyati=urununIkinciFiyati.replaceAll("\\D",""); // 438800
+       urununIkinciFiyati=urununIkinciFiyati.substring(0,urununIkinciFiyati.length()-2); // 4338
+       System.out.println(urununIkinciFiyati);
+       Assert.assertEquals(Integer.parseInt(urununIlkFiyati)*2,Integer.parseInt(urununIkinciFiyati));
 
     }
-
+    @Given("kullanici ekran fotografi cekmek istedigi elementin {string} ekran fotografini ceker")
+    public void kullanici_ekran_fotografi_cekmek_istedigi_elementin_ekran_fotografini_ceker(String ssText) throws IOException, InterruptedException {
+     ReusableMethods.screenShotElement(ssText);
+     ReusableMethods.koordinatTiklamaMethodu(150,1500,200);
+    }
 }
