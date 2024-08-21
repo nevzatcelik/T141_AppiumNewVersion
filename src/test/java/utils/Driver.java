@@ -27,8 +27,9 @@ public class Driver {
 
             UiAutomator2Options options=new UiAutomator2Options();
             options.setUdid("emulator-5554")
-                    .setAppPackage("com.tmob.teknosa")
-                    .setAppActivity("com.tmob.teknosa.MainActivity")
+                    //.setApp("C:\\Users\\ahmet\\IdeaProjects\\AppiumNewVersion_T141\\Apps\\PttAVM - Güvenli Alışveriş_2.4.1GMS_APKPure (1).apk")
+                    .setAppPackage("com.pttem.epttavm")
+                    .setAppActivity("com.pttem.epttavm.ui.activities.splash.SplashActivity")
                     .setNoReset(false);
 
 
